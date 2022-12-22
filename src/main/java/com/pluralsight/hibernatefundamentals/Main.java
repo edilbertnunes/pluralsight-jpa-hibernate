@@ -11,21 +11,32 @@ import javax.persistence.Persistence;
 public class Main {
 
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernatefundamentals.m03.ex01");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernatefundamentals.m03.ex03");
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
         Airport airport = new Airport(1, "Henri Coanda");
 
-        Passenger john = new Passenger(1, "John Smith","Street 14 Avenue");
+        Passenger john = new Passenger(1, "John Smith");
         john.setAirport(airport);
-        Passenger mike = new Passenger(2, "Michael Johnson","Main Street");
+        john.setCity("Boston");
+        john.setStreet("Flowers Street");
+        john.setNumber("3");
+        john.setZipCode("012345");
+        john.setAreaCode("302");
+        john.setPrefix("231");
+        john.setLineNumber("951235");
+
+
+        Passenger mike = new Passenger(2, "Michael Johnson");
         mike.setAirport(airport);
         airport.addPassenger(john);
         airport.addPassenger(mike);
 
+
         Ticket ticket1 = new Ticket(1, "AA1234");
         ticket1.setPassenger(john);
+
 
         Ticket ticket2 = new Ticket(2, "BB5678");
         ticket2.setPassenger(john);
