@@ -11,15 +11,15 @@ import javax.persistence.Persistence;
 public class Main {
 
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernatefundamentals.m02.ex01");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernatefundamentals.m03.ex01");
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
         Airport airport = new Airport(1, "Henri Coanda");
 
-        Passenger john = new Passenger(1, "John Smith");
+        Passenger john = new Passenger(1, "John Smith","Street 14 Avenue");
         john.setAirport(airport);
-        Passenger mike = new Passenger(2, "Michael Johnson");
+        Passenger mike = new Passenger(2, "Michael Johnson","Main Street");
         mike.setAirport(airport);
         airport.addPassenger(john);
         airport.addPassenger(mike);

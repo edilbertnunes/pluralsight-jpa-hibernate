@@ -7,14 +7,38 @@ import java.util.List;
 
 @Entity
 @Table(name="PASSENGERS")
+@SecondaryTable(name = "ADDRESSES",
+    pkJoinColumns = @PrimaryKeyJoinColumn(name = "PASSENGER_ID", referencedColumnName = "PASSENGER_ID"))
 public class Passenger {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "PASSENGER_ID")
     private int id;
 
-    @Column(name = "NAME")
+    @Column(name = "PASSENGER_NAME", table = "PASSENGERS")
     private String name;
+
+    @Column(name = "PASSENGER_ADDRESS", table = "ADDRESSES", columnDefinition = "varchar(25) not null")
+    private String address;
+
+
+    public Passenger(int id, String name, String address) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+    }
+
+    public Passenger() {
+
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     @ManyToOne
     @JoinColumn(name = "AIRPORT_ID")
@@ -22,15 +46,6 @@ public class Passenger {
 
     @OneToMany(mappedBy = "passenger")
     private List<Ticket> tickets = new ArrayList<>();
-
-    public Passenger(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Passenger() {
-
-    }
 
     public int getId() {
         return id;
