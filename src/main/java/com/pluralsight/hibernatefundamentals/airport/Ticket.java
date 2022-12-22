@@ -7,11 +7,41 @@ import javax.persistence.*;
 public class Ticket {
 
     @Id
-    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(name = "NUMBER")
     private String number;
+
+    private String series;
+
+    private String origin;
+
+    private String destination;
+
+    public String getSeries() {
+        return series;
+    }
+
+    public void setSeries(String series) {
+        this.series = series;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
 
     @ManyToOne // um passageiro pode ter muitos tickets
     @JoinColumn(name = "PASSENGER_ID")
